@@ -38,7 +38,7 @@ class PokedexController {
     var pokemon: Pokemon?
     var pokemons: [Pokemon] = []
     
-    var pokedexController = PokedexController()
+    static var pokedexController = PokedexController()
     
 //     create the baseURL
     private let baseUrl = URL(string: "https://pokeapi.co/api/v2/pokemon")!
@@ -46,6 +46,48 @@ class PokedexController {
 //    MARK: - Methods
     
 //    create function to preform a search
+    func preformSearch(with searchTerm: String, completionClosure: @escaping (Result<Pokemon, NetworkError>) -> Void) {
+        
+//        Request the URL
+        let requestURL = baseUrl
+        .appendingPathComponent(searchTerm)
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+//        data Task
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            
+//            connect to the API for search, happens after the data task has ran
+            if let error = error {
+                NSLog("Error retrieving searched Pokemon: \(error)")
+            }
+            
+//            check to see if we recieved the results from search
+            guard let data = data else {
+                NSLog("No data returned from search.")
+                completionClosure(.failure(.noData))
+                return
+            }
+            
+//            decode the data
+            do {
+                let decoder = JSONDecoder()
+                let pokemon = try decoder.decode(Pokemon.self, from: data)
+                self.pokemon = pokemon
+                completionClosure(.success(pokemon))
+                
+                
+            } catch {
+                NSLog("Error retrieving the results to your search: \(error)")
+                completionClosure(.failure(.BadDecode))
+                return
+            }
+            
+            
+        }.resume()
+        
+    }
     
 //    create fuction for creating a pokemon
     func createPokemon(name: String, sprites: Sprites, types: [TypeElement], abilities: [Ability], id: Int) {
@@ -63,7 +105,7 @@ class PokedexController {
     private var pokemonURL: URL? {
         let fileManager = FileManager.default
         guard let directory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {return nil}
-        return directory.appendingPathComponent("pokemons.plist")
+        return directory.appendingPathComponent("pokemon.plist")
     }
     
     func loadFromPersistentStore() {

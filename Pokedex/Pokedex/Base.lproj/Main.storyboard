@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2yW-NV-aWF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -82,9 +82,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="idLabel" destination="R7G-CL-1cU" id="DOJ-me-bSj"/>
-                                    <outlet property="nameLabel" destination="T6j-hV-Kq9" id="DDg-LZ-Nmn"/>
+                                    <outlet property="idLabel" destination="R7G-CL-1cU" id="Su5-E7-FAC"/>
+                                    <outlet property="nameLabel" destination="T6j-hV-Kq9" id="Us6-jM-qmz"/>
                                     <outlet property="photo" destination="xCm-2m-b9d" id="Wi9-3I-7Tu"/>
+                                    <outlet property="pokePhoto" destination="xCm-2m-b9d" id="Ygl-QG-fvt"/>
                                     <segue destination="EXs-q7-A0W" kind="show" identifier="ShowDetailSegue" id="1Ml-8b-q8n"/>
                                 </connections>
                             </tableViewCell>
@@ -191,16 +192,6 @@
                                     <constraint firstAttribute="trailing" secondItem="L7w-8C-UX4" secondAttribute="trailing" id="rcP-8z-Zvz"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHd-SG-ZNE" customClass="CoolButton" customModule="Pokemom_Storyboard" customModuleProvider="target">
-                                <rect key="frame" x="40" y="716" width="334" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6Uo-CD-nh3"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="savePokemonButton:" destination="hVN-Yt-dFf" eventType="touchUpInside" id="Gqa-vQ-U1J"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXJ-nQ-qyd">
                                 <rect key="frame" x="20" y="298" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -213,32 +204,34 @@
                             <constraint firstItem="Y2K-IX-Sxh" firstAttribute="centerX" secondItem="BX3-oz-xfj" secondAttribute="centerX" id="7Hb-oO-akp"/>
                             <constraint firstItem="QXJ-nQ-qyd" firstAttribute="leading" secondItem="1Pw-G5-JgY" secondAttribute="leading" constant="20" id="8Un-8z-9eo"/>
                             <constraint firstItem="Y2K-IX-Sxh" firstAttribute="width" secondItem="BX3-oz-xfj" secondAttribute="width" multiplier="0.8" id="Ggh-Af-8K5"/>
-                            <constraint firstItem="IHd-SG-ZNE" firstAttribute="leading" secondItem="1Pw-G5-JgY" secondAttribute="leading" constant="40" id="J0d-6T-DZ0"/>
                             <constraint firstItem="hwt-Ta-unw" firstAttribute="centerX" secondItem="BX3-oz-xfj" secondAttribute="centerX" id="W25-nJ-PP4"/>
                             <constraint firstItem="hwt-Ta-unw" firstAttribute="top" secondItem="QXJ-nQ-qyd" secondAttribute="bottom" constant="20" id="WyO-MP-6RT"/>
                             <constraint firstItem="JoM-Vy-HUz" firstAttribute="leading" secondItem="1Pw-G5-JgY" secondAttribute="leading" constant="30" id="jc9-di-vWO"/>
                             <constraint firstItem="1Pw-G5-JgY" firstAttribute="trailing" secondItem="QXJ-nQ-qyd" secondAttribute="trailing" constant="20" id="l5D-93-jeh"/>
                             <constraint firstItem="QXJ-nQ-qyd" firstAttribute="top" secondItem="Y2K-IX-Sxh" secondAttribute="bottom" constant="18" id="miw-5p-35c"/>
                             <constraint firstItem="JoM-Vy-HUz" firstAttribute="top" secondItem="hwt-Ta-unw" secondAttribute="bottom" constant="15" id="o4A-b6-P5P"/>
-                            <constraint firstItem="IHd-SG-ZNE" firstAttribute="top" secondItem="JoM-Vy-HUz" secondAttribute="bottom" constant="20" id="sQ5-CL-4hD"/>
                             <constraint firstItem="1Pw-G5-JgY" firstAttribute="trailing" secondItem="JoM-Vy-HUz" secondAttribute="trailing" constant="30" id="ybE-AR-2fI"/>
                             <constraint firstItem="hwt-Ta-unw" firstAttribute="width" secondItem="BX3-oz-xfj" secondAttribute="width" multiplier="0.5" id="yjb-bw-7X6"/>
-                            <constraint firstItem="1Pw-G5-JgY" firstAttribute="trailing" secondItem="IHd-SG-ZNE" secondAttribute="trailing" constant="40" id="yr7-Gs-Lfr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Pw-G5-JgY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zbA-6q-VIP"/>
+                    <navigationItem key="navigationItem" id="zbA-6q-VIP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Rc7-M3-NLD">
+                            <connections>
+                                <action selector="saveBarButtonTapped:" destination="hVN-Yt-dFf" id="ozD-qf-CbU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="abilities" destination="VIW-78-1NT" id="qKc-N6-qzL"/>
-                        <outlet property="abilitiesLabel" destination="sFx-dR-5Hu" id="C6T-FV-jX3"/>
+                        <outlet property="abilitiesLabel" destination="sFx-dR-5Hu" id="2oY-RI-q7C"/>
                         <outlet property="id" destination="TXb-c6-s3c" id="d9d-id-llS"/>
-                        <outlet property="idLabel" destination="o0S-F4-nu7" id="WNQ-Qn-YFc"/>
-                        <outlet property="imageView" destination="hwt-Ta-unw" id="ftk-LG-7jM"/>
-                        <outlet property="nameLabel" destination="QXJ-nQ-qyd" id="jI9-ep-nkz"/>
-                        <outlet property="savePokemonButton" destination="IHd-SG-ZNE" id="CkR-cZ-taj"/>
-                        <outlet property="searchBar" destination="Y2K-IX-Sxh" id="xq9-pP-htq"/>
-                        <outlet property="types" destination="sVg-SO-XR4" id="C67-wt-3rw"/>
-                        <outlet property="typesLabel" destination="TLR-My-3PX" id="Ssk-iN-ElU"/>
+                        <outlet property="idLabel" destination="o0S-F4-nu7" id="1E3-lF-9pH"/>
+                        <outlet property="imageView" destination="hwt-Ta-unw" id="GeL-d9-ZiU"/>
+                        <outlet property="nameLabel" destination="QXJ-nQ-qyd" id="WJL-23-94x"/>
+                        <outlet property="saveButton" destination="Rc7-M3-NLD" id="Gpr-Gg-LPa"/>
+                        <outlet property="searchBar" destination="Y2K-IX-Sxh" id="Npu-eP-cwQ"/>
+                        <outlet property="typeLabel" destination="TLR-My-3PX" id="UUx-xG-Gw5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCe-Wg-gi0" userLabel="First Responder" sceneMemberID="firstResponder"/>
